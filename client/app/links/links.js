@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links, Auth, $window) {
+.controller('LinksController', function ($scope, Links, Auth, $window, $location) {
   // Your code here
   $scope.data = {};
   $scope.randop = 'jnsajkhsadbjsdasd';
@@ -12,7 +12,14 @@ angular.module('shortly.links', [])
     //$location.url('/' + code);
   };
 
+  $scope.intNav = function(link) {
+    $location.url(link);
+  };
+
   Links.getAll().then(function(results) {
     $scope.data.links = results;
+    // $scope.data.links.sort(function(a, b) {
+
+    // });
   });
 });

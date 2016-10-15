@@ -1,6 +1,10 @@
 <div id='container'>
 <!-- Your code here -->
   <div ng-controller='ShortenController'>
+    <nav>
+      <span ng-click="intNav('/links')">Links</span>
+      <span ng-click="intNav('/shorten')">Shorten URLs</span>
+    </nav>
     <form name="ShortenForm">
       <input  type="url" name="input" ng-pattern="rValidUrl" ng-model='newLink' placeholder="http://" required/>
       <button ng-click="addLink(newLink)" ng-disabled="!ShortenForm.input.$valid">Submit</button>

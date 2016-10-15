@@ -1,7 +1,12 @@
 <div id='container'>
   <!-- Your html here -->
   <div ng-controller='LinksController'>
-    <div class="link" ng-repeat="link in data.links">
+  <nav>
+    <span ng-click="intNav('/links')">Links</span>
+    <span ng-click="intNav('/shorten')">Shorten URLs</span>
+  </nav>
+    <input  ng-model="filter" placeholder="filter" />
+    <div ng-repeat="link in data.links | orderBy: '-visits' | filter:filter ">
       <span>{{ link.title }}</span>
       <span ng-click="onClickRedir(link.code)">{{ link.code }}</span>
       <span> {{ link.visits }} </span>

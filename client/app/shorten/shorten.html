@@ -1,8 +1,11 @@
 <div id='container'>
 <!-- Your code here -->
   <div ng-controller='ShortenController'>
-    <input ng-model='newLink' />
-    <button ng-click="addLink(newLink)">Submit</button>
+    <form name="ShortenForm">
+      <input  type="url" name="input" ng-pattern="rValidUrl" ng-model='newLink' required placeholder="http://" />
+      <button ng-click="addLink(newLink)">Submit</button>
+      <div ng-show="!ShortenForm.input.$valid">Invalid url</div>
+    </form>
   </div>
 
 </div>

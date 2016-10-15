@@ -39,7 +39,9 @@ angular.module('shortly', [
         }
       }
     })
-    .otherwise('go here');
+    .otherwise({
+      redirectTo: '/links'
+    });
     // Your code here
 
     // We add our $httpInterceptor into the array

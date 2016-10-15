@@ -17,12 +17,29 @@ angular.module('shortly', [
     })
     .when('/links', {
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      resolve: {
+        checkAuth: function($location, Auth) {
+          console.log(Auth.isAuth());
+          if (!Auth.isAuth()) {
+            $location.path('/signin');
+          }
+        }
+      }
     })
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
-    });
+      controller: 'ShortenController',
+      resolve: {
+        checkAuth: function($location, Auth) {
+          console.log(Auth.isAuth());
+          if (!Auth.isAuth()) {
+            $location.path('/signin');
+          }
+        }
+      }
+    })
+    .otherwise('go here');
     // Your code here
 
     // We add our $httpInterceptor into the array

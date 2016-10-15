@@ -1,11 +1,12 @@
 <div id='container'>
   <!-- Your html here -->
   <div ng-controller='LinksController'>
-    <div ng-repeat="link in data.links">
+    <div class="link" ng-repeat="link in data.links">
       <span>{{ link.title }}</span>
       <a ng-href="{{link.url}}">{{ link.code }}</a>
       <span> {{ link.visits }} </span>
     </div>
+    <button ng-click="signout()">Signout!</button>
     <!-- <a ng-href="{{link.url}}" ng-repeat="link in data.links">{{ link.title }}</a> -->
   </div>
 </div>

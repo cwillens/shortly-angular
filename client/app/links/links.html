@@ -3,7 +3,7 @@
   <div ng-controller='LinksController'>
     <div class="link" ng-repeat="link in data.links">
       <span>{{ link.title }}</span>
-      <a ng-href="{{link.url}}">{{ link.code }}</a>
+      <span ng-click="onClickRedir(link.code)">{{ link.code }}</span>
       <span> {{ link.visits }} </span>
     </div>
     <button ng-click="signout()">Signout!</button>

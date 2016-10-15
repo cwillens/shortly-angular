@@ -61,12 +61,14 @@ module.exports = {
         if (!link) {
           return next(new Error('Link not added yet'));
         }
-
+        console.log('WE ARE INCREMENTING THE VISITS!!!!!');
         link.visits++;
         link.save(function (err, savedLink) {
           if (err) {
+            console.log('there is an error!!!!!!!');
             next(err);
           } else {
+            console.log('WE ARE ABOUT TO REDIREC TOT THE LINK!@@@@!!');
             res.redirect(savedLink.url);
           }
         });

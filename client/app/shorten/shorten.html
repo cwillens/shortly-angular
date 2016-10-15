@@ -2,8 +2,8 @@
 <!-- Your code here -->
   <div ng-controller='ShortenController'>
     <form name="ShortenForm">
-      <input  type="url" name="input" ng-pattern="rValidUrl" ng-model='newLink' required placeholder="http://" />
-      <button ng-click="addLink(newLink)">Submit</button>
+      <input  type="url" name="input" ng-pattern="rValidUrl" ng-model='newLink' placeholder="http://" required/>
+      <button ng-click="addLink(newLink)" ng-disabled="!ShortenForm.input.$valid">Submit</button>
       <div ng-show="!ShortenForm.input.$valid">Invalid url</div>
     </form>
   </div>

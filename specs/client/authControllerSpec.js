@@ -64,4 +64,22 @@ describe('AuthController', function () {
     $httpBackend.flush();
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });
+
+  it('should redirect to login if user is not logged in', function() {
+    $location.path('/links');
+    // wait for async redirect 
+    setTimeout(function() { expect($location.url()).to.equal('/signin'); }, 500);
+  });
+
+  it('should allow signed in users to access links', function() {
+    var token = 'sjj232hwjhr3urw90rof';
+
+    // make a 'fake' reques to the server, not really going to our server
+    $httpBackend.expectPOST('/api/users/signup').respond({token: token});
+    $scope.signup();
+    $httpBackend.flush();
+
+    $location.path('/links');
+    setTimeout(function() { expect($location.url()).to.equal('/links'); }, 500);
+  });
 });

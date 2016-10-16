@@ -1,7 +1,7 @@
 'use strict';
 
 describe('ShortenController', function () {
-  var $scope, $rootScope, $location, createController, $httpBackend, Links;
+  var $scope, $rootScope, $location, createController, $httpBackend, Links, $http;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
@@ -13,6 +13,7 @@ describe('ShortenController', function () {
     $httpBackend = $injector.get('$httpBackend');
     Links = $injector.get('Links');
     $location = $injector.get('$location');
+    $http = $injector.get('$http');
 
     $scope = $rootScope.$new();
 
@@ -22,7 +23,8 @@ describe('ShortenController', function () {
       return $controller('ShortenController', {
         $scope: $scope,
         Links: Links,
-        $location: $location
+        $location: $location,
+        $http: $http
       });
     };
 
@@ -46,5 +48,30 @@ describe('ShortenController', function () {
     $httpBackend.expectPOST('/api/links').respond(201, '');
     $scope.addLink();
     $httpBackend.flush();
+  });
+
+  xit('should redirect to created link when clicked', function() {
+    $http({
+      method: 'POST',
+      url: '/api/links',
+      data: 'https://www.apple.com/'
+    }).then(function() {
+      $http({
+        method: 'GET',
+        url: '/api/links'
+      }).then(function(resp) {
+        console.log("THIS IS THE RESPONSE!!!!!!", resp);
+        expect(true).to.equal(false);
+        //for (var i = 0; i < resp.length; i++)
+      }).catch(function(error) {
+        console.log(error);
+      });
+      
+    }).catch(function(error){
+      console.log(error);
+    });
+
+    //we look in the database for the code, with a get request maybe
+    //we go to localhost / code and see if it works
   });
 });
